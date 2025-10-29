@@ -11,6 +11,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({
   responseTime,
   config,
 }) => {
+  const safeResults = Array.isArray(results) ? results : [];
   if (error) {
     return (
       <div className="text-center py-12">
@@ -20,7 +21,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({
     );
   }
 
-  if (results.length === 0) {
+  if (safeResults.length === 0) {
     return (
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -62,7 +63,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({
     >
       {/* Search Stats */}
       <SearchStats
-        totalResults={results.length}
+        totalResults={safeResults.length}
         responseTime={responseTime}
         searchType={config.searchType}
         alpha={config.alpha}
@@ -70,7 +71,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({
 
       {/* Results List */}
       <div className="space-y-4">
-        {results.map((result, index) => (
+        {safeResults.map((result, index) => (
           <motion.div
             key={result.id}
             initial={{ opacity: 0, y: 20 }}
@@ -89,7 +90,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({
       </div>
 
       {/* Load More Button (if needed) */}
-      {results.length >= config.limit && (
+      {safeResults.length >= config.limit && (
         <div className="text-center pt-6">
           <button
             onClick={() => {
