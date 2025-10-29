@@ -1,0 +1,131 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  namespace: ai-search-engine
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend
+        image: ai-search-backend:latest
+        ports:
+        - containerPort: 5000
+        env:
+        - name: MONGODB_URI
+          valueFrom:
+            configMapKeyRef:
+              name: ai-search-config
+              key: MONGODB_URI
+        - name: REDIS_URL
+          valueFrom:
+            configMapKeyRef:
+              name: ai-search-config
+              key: REDIS_URL
+        - name: EMBEDDING_MODEL
+          valueFrom:
+            configMapKeyRef:
+              name: ai-search-config
+              key: EMBEDDING_MODEL
+        - name: CACHE_TTL
+          valueFrom:
+            configMapKeyRef:
+              name: ai-search-config
+              key: CACHE_TTL
+        - name: FLASK_ENV
+          valueFrom:
+            configMapKeyRef:
+              name: ai-search-config
+              key: FLASK_ENV
+        - name: SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: ai-search-secrets
+              key: SECRET_KEY
+        volumeMounts:
+        - name: backend-storage
+          mountPath: /app/data
+        resources:
+          requests:
+            memory: "1Gi"
+            cpu: "500m"
+          limits:
+            memory: "2Gi"
+            cpu: "1000m"
+        livenessProbe:
+          httpGet:
+            path: /api/health
+            port: 5000
+          initialDelaySeconds: 60
+          periodSeconds: 30
+          timeoutSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /api/health/ready
+            port: 5000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+      volumes:
+      - name: backend-storage
+        persistentVolumeClaim:
+          claimName: backend-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+  namespace: ai-search-engine
+spec:
+  selector:
+    app: backend
+  ports:
+  - port: 5000
+    targetPort: 5000
+  type: ClusterIP
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: backend-pvc
+  namespace: ai-search-engine
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 5Gi
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: backend-hpa
+  namespace: ai-search-engine
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: backend
+  minReplicas: 2
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 70
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: 80
+
