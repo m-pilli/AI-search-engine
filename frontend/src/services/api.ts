@@ -10,7 +10,10 @@ import {
 
 // Temporary hardcoded base URL to unblock production while env propagation is fixed
 // Replace with process.env.REACT_APP_API_URL when Vercel env is confirmed
-const resolvedBaseURL = 'https://overpuissant-gratulatorily-lorenza.ngrok-free.dev/api';
+const resolvedBaseURLRaw = 'https://overpuissant-gratulatorily-lorenza.ngrok-free.dev/api';
+const resolvedBaseURL = resolvedBaseURLRaw.replace(/\/$/, '');
+
+const buildUrl = (path: string) => `${resolvedBaseURL}${path.startsWith('/') ? '' : '/'}${path}`;
 
 // Create axios instance with default config
 const api = axios.create({
@@ -24,7 +27,7 @@ const api = axios.create({
 // Request interceptor for logging
 api.interceptors.request.use(
   (config) => {
-    console.log(`API Request: ${config.method?.toUpperCase()} ${config.baseURL}${config.url}`);
+    console.log(`API Request: ${config.method?.toUpperCase()} ${config.baseURL || ''}${config.url}`);
     return config;
   },
   (error) => {
@@ -60,7 +63,8 @@ export const searchApi = {
       type: searchType,
     });
 
-    const response: AxiosResponse<SearchResponse> = await api.get(`/search?${params}`);
+    const url = buildUrl(`/search?${params}`);
+    const response: AxiosResponse<SearchResponse> = await axios.get(url, { headers: api.defaults.headers });
     return response.data;
   },
 
@@ -70,7 +74,8 @@ export const searchApi = {
       limit: limit.toString(),
     });
 
-    const response: AxiosResponse<{ suggestions: string[] }> = await api.get(`/search/suggestions?${params}`);
+    const url = buildUrl(`/search/suggestions?${params}`);
+    const response: AxiosResponse<{ suggestions: string[] }> = await axios.get(url, { headers: api.defaults.headers });
     return response.data.suggestions;
   },
 
