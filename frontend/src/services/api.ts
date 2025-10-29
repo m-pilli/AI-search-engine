@@ -8,9 +8,12 @@ import {
   ApiError 
 } from '../types';
 
+// Resolve and sanitize base URL
+const resolvedBaseURL = (process.env.REACT_APP_API_URL || 'http://localhost:5000/api').trim();
+
 // Create axios instance with default config
 const api = axios.create({
-  baseURL: process.env.REACT_APP_API_URL || 'http://localhost:5000/api',
+  baseURL: resolvedBaseURL,
   timeout: 30000,
   headers: {
     'Content-Type': 'application/json',
@@ -20,7 +23,7 @@ const api = axios.create({
 // Request interceptor for logging
 api.interceptors.request.use(
   (config) => {
-    console.log(`API Request: ${config.method?.toUpperCase()} ${config.url}`);
+    console.log(`API Request: ${config.method?.toUpperCase()} ${config.baseURL}${config.url}`);
     return config;
   },
   (error) => {
