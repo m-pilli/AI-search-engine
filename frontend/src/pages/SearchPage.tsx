@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import { motion } from 'framer-motion';
 import SearchBar from '../components/SearchBar';
@@ -7,7 +7,7 @@ import SearchConfig from '../components/SearchConfig';
 import LoadingSpinner from '../components/LoadingSpinner';
 import ErrorMessage from '../components/ErrorMessage';
 import { searchApi, handleApiError } from '../services/api';
-import { SearchConfig as SearchConfigType, SearchResult } from '../types';
+import { SearchConfig as SearchConfigType } from '../types';
 import toast from 'react-hot-toast';
 
 const SearchPage: React.FC = () => {
