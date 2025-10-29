@@ -8,8 +8,9 @@ import {
   ApiError 
 } from '../types';
 
-// Resolve and sanitize base URL
-const resolvedBaseURL = (process.env.REACT_APP_API_URL || 'http://localhost:5000/api').trim();
+// Temporary hardcoded base URL to unblock production while env propagation is fixed
+// Replace with process.env.REACT_APP_API_URL when Vercel env is confirmed
+const resolvedBaseURL = 'https://overpuissant-gratulatorily-lorenza.ngrok-free.dev/api';
 
 // Create axios instance with default config
 const api = axios.create({
