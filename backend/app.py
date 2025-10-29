@@ -19,8 +19,15 @@ def create_app():
     """Create and configure the Flask application."""
     app = Flask(__name__)
     
-    # Enable CORS for frontend
-    CORS(app, origins=["http://localhost:3000", "http://127.0.0.1:3000"])
+    # Enable CORS for frontend (allow all origins for now, can be restricted via env)
+    cors_origins = os.getenv("CORS_ORIGINS")
+    if cors_origins:
+        # comma-separated list from env
+        origins = [o.strip() for o in cors_origins.split(",") if o.strip()]
+        CORS(app, origins=origins, supports_credentials=True)
+    else:
+        # fallback to permissive during deployment testing
+        CORS(app, origins="*", supports_credentials=True)
     
     # Configuration
     app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'dev-secret-key')
