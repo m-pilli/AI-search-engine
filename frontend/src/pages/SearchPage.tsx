@@ -130,10 +130,10 @@ const SearchPage: React.FC = () => {
             <ErrorMessage error={handleApiError(error).error} />
           ) : searchData ? (
             <SearchResults
-              results={searchData.results}
+              results={searchData?.results || []}
               loading={isLoading}
               error={null}
-              responseTime={searchData.response_time_ms}
+              responseTime={searchData?.response_time_ms || 0}
               config={searchConfig}
             />
           ) : null}
