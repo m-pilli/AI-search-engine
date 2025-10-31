@@ -6,7 +6,11 @@ A comprehensive web-based AI Search Engine that combines semantic understanding 
 
 **[🚀 Try the Live Demo on Vercel](https://ai-search-engine-frontend-ktasoc3u0-m-pillis-projects.vercel.app/)**
 
-> **Note:** The live demo requires the backend to be running. For full functionality, please follow the [Local Setup Guide](./LOCAL_SETUP.md) to run the complete application locally.
+> **Note:** 
+> - **Frontend**: Deployed on Vercel ✅
+> - **Backend**: Currently running locally with Docker + ngrok ⚠️
+> - For full functionality with deployed backend, see [Backend Deployment Guide](./BACKEND_DEPLOYMENT.md)
+> - For local setup, see [Local Setup Guide](./LOCAL_SETUP.md)
 
 ## 🚀 Features
 
@@ -54,16 +58,16 @@ Frontend (React) → Backend (Flask) → Database (MongoDB) → Vector DB (FAISS
 
 **Live Demo:** [🚀 Visit the Application](https://ai-search-engine-frontend-ktasoc3u0-m-pillis-projects.vercel.app/)
 
-**Ready to deploy?** Check out [DEPLOYMENT.md](./DEPLOYMENT.md) for step-by-step instructions to:
-- Push to GitHub
-- Deploy frontend to Vercel
-- Deploy backend to Render/Railway
+**Current Deployment Status:**
+- ✅ **Frontend**: Deployed on [Vercel](https://ai-search-engine-frontend-ktasoc3u0-m-pillis-projects.vercel.app/)
+- ⚠️ **Backend**: Running locally with Docker + ngrok (not deployed yet)
+- 📖 For backend deployment to Render/Railway, see [Backend Deployment Guide](./BACKEND_DEPLOYMENT.md)
 
-Quick links:
+**Quick links:**
 - **Live Demo:** [Vercel Deployment](https://ai-search-engine-frontend-ktasoc3u0-m-pillis-projects.vercel.app/) 🌐
-- [Deployment Guide](./DEPLOYMENT.md) 📖
-- [Vercel](https://vercel.com) - Frontend hosting
-- [Render](https://render.com) - Backend hosting
+- [Backend Deployment Guide](./BACKEND_DEPLOYMENT.md) 🚀
+- [Frontend Deployment Guide](./DEPLOYMENT.md) 📖
+- [Local Setup Guide](./LOCAL_SETUP.md) 🏠
 
 ## 🚀 Quick Start
 
