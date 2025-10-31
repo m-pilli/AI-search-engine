@@ -2,6 +2,12 @@
 
 A comprehensive web-based AI Search Engine that combines semantic understanding with keyword search to deliver relevant, ranked results. Built with React frontend and Python Flask backend, optimized for low-latency (<200ms) search across large datasets (50K+ documents).
 
+## 🌐 Live Demo
+
+**[🚀 Try the Live Demo on Vercel](https://YOUR-VERCEL-URL.vercel.app)**
+
+> **Note:** The live demo requires the backend to be running. For full functionality, please follow the [Local Setup Guide](./LOCAL_SETUP.md) to run the complete application locally.
+
 ## 🚀 Features
 
 - **Hybrid Search**: Combines semantic search (embeddings) with keyword search (TF-IDF/BM25)
@@ -46,12 +52,15 @@ Frontend (React) → Backend (Flask) → Database (MongoDB) → Vector DB (FAISS
 
 ## 🌐 Deployment
 
+**Live Demo:** [🚀 Visit the Application](https://YOUR-VERCEL-URL.vercel.app)
+
 **Ready to deploy?** Check out [DEPLOYMENT.md](./DEPLOYMENT.md) for step-by-step instructions to:
 - Push to GitHub
 - Deploy frontend to Vercel
 - Deploy backend to Render/Railway
 
 Quick links:
+- **Live Demo:** [Vercel Deployment](https://YOUR-VERCEL-URL.vercel.app) 🌐
 - [Deployment Guide](./DEPLOYMENT.md) 📖
 - [Vercel](https://vercel.com) - Frontend hosting
 - [Render](https://render.com) - Backend hosting
