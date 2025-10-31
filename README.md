@@ -4,7 +4,7 @@ A comprehensive web-based AI Search Engine that combines semantic understanding 
 
 ## 🌐 Live Demo
 
-**[🚀 Try the Live Demo on Vercel](https://YOUR-VERCEL-URL.vercel.app)**
+**[🚀 Try the Live Demo on Vercel](https://ai-search-engine-frontend-ktasoc3u0-m-pillis-projects.vercel.app/)**
 
 > **Note:** The live demo requires the backend to be running. For full functionality, please follow the [Local Setup Guide](./LOCAL_SETUP.md) to run the complete application locally.
 
@@ -52,7 +52,7 @@ Frontend (React) → Backend (Flask) → Database (MongoDB) → Vector DB (FAISS
 
 ## 🌐 Deployment
 
-**Live Demo:** [🚀 Visit the Application](https://YOUR-VERCEL-URL.vercel.app)
+**Live Demo:** [🚀 Visit the Application](https://ai-search-engine-frontend-ktasoc3u0-m-pillis-projects.vercel.app/)
 
 **Ready to deploy?** Check out [DEPLOYMENT.md](./DEPLOYMENT.md) for step-by-step instructions to:
 - Push to GitHub
@@ -60,7 +60,7 @@ Frontend (React) → Backend (Flask) → Database (MongoDB) → Vector DB (FAISS
 - Deploy backend to Render/Railway
 
 Quick links:
-- **Live Demo:** [Vercel Deployment](https://YOUR-VERCEL-URL.vercel.app) 🌐
+- **Live Demo:** [Vercel Deployment](https://ai-search-engine-frontend-ktasoc3u0-m-pillis-projects.vercel.app/) 🌐
 - [Deployment Guide](./DEPLOYMENT.md) 📖
 - [Vercel](https://vercel.com) - Frontend hosting
 - [Render](https://render.com) - Backend hosting
